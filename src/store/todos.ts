@@ -1,5 +1,5 @@
-import { GetterTree, MutationTree, ActionTree } from 'vuex';
-import { TodoState, Todo, RootState } from '../types';
+import { GetterTree, MutationTree, ActionTree, Module } from 'vuex';
+import { TodoState, Todo, RootState, LoginState } from '../types';
 
 type TodoGetter = GetterTree< TodoState, RootState>;
 
@@ -46,7 +46,8 @@ const actions: ActionTree< TodoState, RootState> = {
   },
 };
 
-export const todos = {
+export const todos: Module< TodoState, RootState> = {
+  namespaced: true,
   state: TodoState,
   getters,
   mutations,

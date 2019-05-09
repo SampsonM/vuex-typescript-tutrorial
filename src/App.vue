@@ -33,8 +33,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State, Getter, Mutation, Action } from 'vuex-class';
+import { State, Getter, Mutation, Action, namespace } from 'vuex-class';
 import { Todo, LoginState } from './types';
+
+const Todo = namespace('todos');
+const Login = namespace('login');
+
 
 @Component
 export default class App extends Vue {
@@ -49,17 +53,17 @@ export default class App extends Vue {
   @State public login!: LoginState;
 
   // This pulls in Mutations to be commited directly in component
-  @Mutation('login') public loginMutation: any;
-  @Mutation public addTodo: any;
-  @Mutation public toggleTodo: any;
+  @Login.Mutation('login') public loginMutation: any; // without namespacing = store.mutations['login/login']
+  @Todo.Mutation public addTodo: any;
+  @Todo.Mutation public toggleTodo: any;
 
   // ...mapActions
-  @Action public addTodoAsync: any;
+  @Todo.Action public addTodoAsync: any;
 
   // ...mapGetters can be renames by invoking getters
   // as a function with the name of the getter    ..or not
-  @Getter('todos') public todosNotDone!: Todo[];
-  @Getter('doneTodos') public doneTodos!: Todo[];
+  @Todo.Getter('todos') public todosNotDone!: Todo[];
+  @Todo.Getter('doneTodos') public doneTodos!: Todo[]; // without namespaceing = store.getters['todos/doneTodos']
 
 }
 </script>
