@@ -1,5 +1,5 @@
 import { GetterTree, MutationTree, ActionTree, Module } from 'vuex';
-import { TodoState, Todo, RootState, LoginState } from '../types';
+import { TodoState, Todo, RootState } from '../types';
 
 type TodoGetter = GetterTree< TodoState, RootState>;
 
@@ -25,8 +25,6 @@ const mutations: MutationTree< TodoState> = {
     state.todos.push(todo);
   },
   toggleTodo(state, todo) {
-    // tslint:disable-next-line:no-console
-    console.log(todo);
     todo.checked = !todo.checked;
   },
 };

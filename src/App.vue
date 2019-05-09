@@ -39,7 +39,6 @@ import { Todo, LoginState } from './types';
 const Todo = namespace('todos');
 const Login = namespace('login');
 
-
 @Component
 export default class App extends Vue {
   // Initialise data using vue property decorator syntax
