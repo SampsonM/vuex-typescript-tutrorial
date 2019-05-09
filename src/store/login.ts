@@ -7,7 +7,7 @@ const LoginState: LoginState = {
 };
 
 const mutations: MutationTree< LoginState> = {
-    login(state) {
+    login(state: LoginState) {
         state.isLoggedIn = true;
         state.user = 'Alex';
     },

@@ -1,9 +1,12 @@
 <template>
   <div id="app">
 
+    <button v-if="!login.isLoggedIn" @click="loginMutation">Login</button>
+    <p v-else>hello {{ login.user }}</p>
+
     <h3> All todos </h3>
     <ul>
-      <li v-for="(todo, i) in todos.todos" :key="i">
+      <li v-for="(todo, i) in todosNotDone" :key="i">
         <!-- v-model is no longer useful and we have to revert to
         | binding the model and change eventhandlers  -->
         <input type="checkbox" :checked="todo.checked" @change="toggleTodo(todo)" >
@@ -31,7 +34,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { State, Getter, Mutation, Action } from 'vuex-class';
-import { Todo } from './types';
+import { Todo, LoginState } from './types';
 
 @Component
 export default class App extends Vue {
@@ -43,9 +46,10 @@ export default class App extends Vue {
   };
 
   // This is like ...mapState
-  @State public todos!: Todo[];
+  @State public login!: LoginState;
 
   // This pulls in Mutations to be commited directly in component
+  @Mutation('login') public loginMutation: any;
   @Mutation public addTodo: any;
   @Mutation public toggleTodo: any;
 
@@ -55,7 +59,7 @@ export default class App extends Vue {
   // ...mapGetters can be renames by invoking getters
   // as a function with the name of the getter    ..or not
   @Getter('todos') public todosNotDone!: Todo[];
-  @Getter('todos/doneTodos') public doneTodos!: Todo[];
+  @Getter('doneTodos') public doneTodos!: Todo[];
 
 }
 </script>
