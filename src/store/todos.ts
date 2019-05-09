@@ -1,7 +1,7 @@
 import { GetterTree, MutationTree, ActionTree } from 'vuex';
-import { State, Todo } from '../types';
+import { TodoState, Todo } from '../types';
 
-export const state: State = {
+const TodoState: TodoState = {
   todos: [
     { text: 'buys milks', checked: true },
     { text: 'buys hair', checked: true },
@@ -9,24 +9,27 @@ export const state: State = {
   ],
 };
 
-export const getters: GetterTree< State, any> = {
-  todos: (rootState) => rootState.todos.filter((todo: any) => !todo.checked),
-  doneTodos: (rootState) => rootState.todos.filter((todo: any) => todo.checked),
+const getters: GetterTree< TodoState, any> = {
+  todos: (state) => state.todos.filter((todo: any) => !todo.checked),
+  doneTodos: (state) => state.todos.filter((todo: any) => todo.checked),
 };
 
-export const mutations: MutationTree< State> = {
-  addTodo(rootState, newTodo) {
+const mutations: MutationTree< TodoState> = {
+  addTodo(state, newTodo) {
     // Must create a copy to prevent unwanted two way binding happening
     const todo = {...newTodo};
 
-    rootState.todos.push(todo);
+    state.todos.push(todo);
   },
-  toggleTodo(rootState, todo) {
-    todo.checked = !todo.checked;
+  toggleTodo(state, todo) {
+    state.todos.forEach((t) => {
+      // tslint:disable-next-line:no-console
+      console.log(t);
+    });
   },
 };
 
-export const actions: ActionTree< State, any> = {
+const actions: ActionTree< TodoState, any> = {
   async addTodoAsync({ commit }, payload) {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts/' + payload);
 
@@ -39,4 +42,12 @@ export const actions: ActionTree< State, any> = {
 
     commit('addTodo', todo);
   },
+};
+
+export const todos = {
+  namespaced: true,
+  state: TodoState,
+  getters,
+  mutations,
+  actions,
 };

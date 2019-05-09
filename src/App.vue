@@ -1,27 +1,17 @@
 <template>
   <div id="app">
 
-    <h3>All todos</h3>
+    <h3> All todos </h3>
     <ul>
-      <li v-for="(todo, i) in todos" :key="i">
-        <input type="checkbox" :checked="todo.checked" @change="toggleTodo(todo)" >
-        {{ todo.text }}
-      </li>
-    </ul>
-
-    <h3>
-      Not Done
-    </h3>
-    <ul>
-      <li v-for="(todo, i) in todosNotDone" :key="i">
+      <li v-for="(todo, i) in todos.todos" :key="i">
+        <!-- v-model is no longer useful and we have to revert to
+        | binding the model and change eventhandlers  -->
         <input type="checkbox" :checked="todo.checked" @change="toggleTodo(todo)" >
         {{ todo.text }}
       </li>
     </ul>
     
-    <h3>
-      Done
-    </h3>
+    <h3> Done </h3>
     <ul>
       <li v-for="(todo, i) in doneTodos" :key="i">
         <input type="checkbox" :checked="todo.checked" @change="toggleTodo(todo)" >
@@ -65,7 +55,7 @@ export default class App extends Vue {
   // ...mapGetters can be renames by invoking getters
   // as a function with the name of the getter    ..or not
   @Getter('todos') public todosNotDone!: Todo[];
-  @Getter public doneTodos!: Todo[];
+  @Getter('todos/doneTodos') public doneTodos!: Todo[];
 
 }
 </script>
