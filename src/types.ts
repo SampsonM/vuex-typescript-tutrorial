@@ -17,4 +17,5 @@ export interface LoginState {
 export interface Todo {
   text: string;
   checked: boolean;
+  id: number;
 }

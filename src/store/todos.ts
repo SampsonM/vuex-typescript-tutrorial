@@ -5,9 +5,9 @@ type TodoGetter = GetterTree< TodoState, RootState>;
 
 const TodoState: TodoState = {
   todos: [
-    { text: 'buys milks', checked: true },
-    { text: 'buys hair', checked: true },
-    { text: 'buys nuts', checked: false },
+    { id: 0, text: 'buys milks', checked: true },
+    { id: 1, text: 'buys hair', checked: true },
+    { id: 2, text: 'buys nuts', checked: true },
   ],
 };
 
@@ -25,7 +25,11 @@ const mutations: MutationTree< TodoState> = {
     state.todos.push(todo);
   },
   toggleTodo(state, todo) {
-    todo.checked = !todo.checked;
+    state.todos.forEach((t) => {
+      if (t.id === todo.id) {
+        t.checked = !t.checked;
+      }
+    });
   },
 };
 
@@ -38,6 +42,7 @@ const actions: ActionTree< TodoState, RootState> = {
     const todo: Todo = {
       text: rootState.login.user + ' ' + data.title,
       checked: false,
+      id: rootState.todos.todos.length,
     };
 
     commit('addTodo', todo);

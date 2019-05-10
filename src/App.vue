@@ -46,23 +46,23 @@ export default class App extends Vue {
   public newTodo: Todo = {
     text: '',
     checked: false,
+    id: 0,
   };
 
   // This is like ...mapState
   @State public login!: LoginState;
 
-  // This pulls in Mutations to be commited directly in component
-  @Login.Mutation('login') public loginMutation: any; // without namespacing = store.mutations['login/login']
-  @Todo.Mutation public addTodo: any;
-  @Todo.Mutation public toggleTodo: any;
-
   // ...mapActions
   @Todo.Action public addTodoAsync: any;
 
-  // ...mapGetters can be renames by invoking getters
-  // as a function with the name of the getter    ..or not
+  // ...mapGetters
   @Todo.Getter('todos') public todosNotDone!: Todo[];
-  @Todo.Getter('doneTodos') public doneTodos!: Todo[]; // without namespaceing = store.getters['todos/doneTodos']
+  @Todo.Getter('doneTodos') public doneTodos!: Todo[];
+
+  // This pulls in Mutations to be commited directly in component
+  @Login.Mutation('login') public loginMutation: any;
+  @Todo.Mutation public addTodo: any;
+  @Todo.Mutation public toggleTodo: any;
 
 }
 </script>
