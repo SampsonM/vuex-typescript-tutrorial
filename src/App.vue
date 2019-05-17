@@ -54,6 +54,7 @@ export default class App extends Vue {
 
   // ...mapActions
   @Todo.Action public addTodoAsync: any;
+  @Todo.Action public toggleTodo: any;
 
   // ...mapGetters
   @Todo.Getter('todos') public todosNotDone!: Todo[];
@@ -62,7 +63,6 @@ export default class App extends Vue {
   // This pulls in Mutations to be commited directly in component
   @Login.Mutation('login') public loginMutation: any;
   @Todo.Mutation public addTodo: any;
-  @Todo.Mutation public toggleTodo: any;
 
 }
 </script>

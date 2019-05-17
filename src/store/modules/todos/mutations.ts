@@ -9,13 +9,10 @@ export const mutations: MutationTree< TodoState> = {
         state.todos.push(todo);
     },
     TOGGLE_TODO(state, todo) {
-        const newTodos: any = state.todos.map((t: Todo) => {
-            if (t.id === todo.id) {
+        state.todos.forEach((t: Todo) => {
+            if (t.text === todo.text) {
                 t.checked = !t.checked;
             }
-            return t;
         });
-
-        state.todos = newTodos;
     },
 };

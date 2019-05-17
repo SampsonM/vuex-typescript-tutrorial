@@ -15,4 +15,7 @@ export const actions: TodoActions = {
 
         commit('ADD_TODO', todo);
     },
-  };
+    toggleTodo({ commit }, todo) {
+        commit('TOGGLE_TODO', todo);
+    },
+};
