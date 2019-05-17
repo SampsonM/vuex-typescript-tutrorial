@@ -11,7 +11,7 @@ export const mutations: MutationTree< TodoState> = {
     TOGGLE_TODO(state, todo) {
         const newTodos: any = state.todos.map((t: Todo) => {
             if (t.id === todo.id) {
-            t.checked = !t.checked;
+                t.checked = !t.checked;
             }
             return t;
         });

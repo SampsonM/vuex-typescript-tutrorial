@@ -19,7 +19,7 @@
         "src/*"
       ]
     },
-    "lib": ["dom","es5","es2018.promise"]
+    "lib": ["dom","es5","es2018.promise", "es2015"]
   },
   "include": [
     "src/**/*.ts",
