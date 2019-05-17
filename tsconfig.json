@@ -19,12 +19,7 @@
         "src/*"
       ]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["dom","es5","es2018.promise"]
   },
   "include": [
     "src/**/*.ts",
