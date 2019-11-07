@@ -34,43 +34,43 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { State, Getter, Mutation, Action, namespace } from 'vuex-class';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { State, Getter, Mutation, Action, namespace } from 'vuex-class'
 
-const User = namespace('user');
+const User = namespace('user')
 
 @Component
 export default class ExampleTS extends Vue {
   // How to pull in vuex state, mutations, getters, actions
   @User.State('firstname') public vuexFirstname!: string;
 
-  @User.Mutation public updateName: any;
+  @User.Mutation public updateName: any
 
-  @User.Action public updateNameAsync: any;
+  @User.Action public updateNameAsync: any
 
-  @User.Getter public getName: any;
+  @User.Getter public getName: any
 
   // Basic Typescript vue component class syntax
   // Props
-  @Prop() private msg!: string;
+  @Prop() private msg!: string
 
   // Data
-  private countNumber: number = 0;
-  private firstName: string = '';
-  private lastName: string = '';
+  private countNumber: number = 0
+  private firstName: string = ''
+  private lastName: string = ''
 
   // Computed
   get sumOfCountNumber(): number {
-    return this.countNumber / 2;
+    return this.countNumber / 2
   }
 
   get fullName(): string {
-    return this.firstName + ' ' + this.lastName;
+    return this.firstName + ' ' + this.lastName
   }
 
   // Methods
   private incrementCounter(): void {
-    this.countNumber++;
+    this.countNumber++
   }
 
   // Watchers
@@ -78,7 +78,7 @@ export default class ExampleTS extends Vue {
   private onCountreachesFive(newVal: number, oldVal: number): void {
     if (newVal === 5) {
       // tslint:disable-next-line:no-console
-      console.warn('five reached');
+      console.warn('five reached')
     }
   }
 }

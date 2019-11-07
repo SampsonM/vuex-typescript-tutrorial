@@ -32,37 +32,37 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { State, Getter, Mutation, Action, namespace } from 'vuex-class';
-import { Todo, LoginState } from './types';
+import { Component, Vue } from 'vue-property-decorator'
+import { State, Getter, Mutation, Action, namespace } from 'vuex-class'
+import { Todo, LoginState } from './types'
 
-const Todo = namespace('todos');
-const Login = namespace('login');
+const Todo = namespace('todos')
+const Login = namespace('login')
 
 @Component
 export default class App extends Vue {
   // Initialise data using vue property decorator syntax
-  public todoId: string = '0';
+  public todoId: string = '0'
   public newTodo: Todo = {
     text: '',
     checked: false,
-    id: 0,
-  };
+    id: 0
+  }
 
   // This is like ...mapState
-  @State public login!: LoginState;
+  @State public login!: LoginState
 
   // ...mapActions
-  @Todo.Action public addTodoAsync: any;
-  @Todo.Action public toggleTodo: any;
+  @Todo.Action public addTodoAsync: any
+  @Todo.Action public toggleTodo: any
 
   // ...mapGetters
-  @Todo.Getter('todos') public todosNotDone!: Todo[];
-  @Todo.Getter('doneTodos') public doneTodos!: Todo[];
+  @Todo.Getter('todos') public todosNotDone!: Todo[]
+  @Todo.Getter('doneTodos') public doneTodos!: Todo[]
 
   // This pulls in Mutations to be commited directly in component
-  @Login.Mutation('login') public loginMutation: any;
-  @Todo.Mutation public addTodo: any;
+  @Login.Mutation('login') public loginMutation: any
+  @Todo.Mutation public addTodo: any
 
 }
 </script>

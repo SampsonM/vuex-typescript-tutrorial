@@ -15,24 +15,21 @@ export interface LoginState {
   isLoggedIn: boolean;
 }
 
-
-// Models
 export interface Todo {
   text: string;
   checked: boolean;
   id: number;
 }
 
+// STORE
 
-// Action Interfaces
 type TodoMutationNames = 'ADD_TODO' | 'TOGGLE_TODO';
-
 type TodoCommit = (action: TodoMutationNames, todo: Todo) => void;
 
+// Actions Interface
 export interface TodoActions extends ActionTree< TodoState, RootState> {
   addTodoAsync: (c: {commit: TodoCommit, rootState: RootState}, payload: Todo) => void;
 }
-
 
 // Mutations Interface
 export interface TodoMutations extends MutationTree< TodoState> {
